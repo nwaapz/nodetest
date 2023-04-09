@@ -1,10 +1,11 @@
 const express=require("express")
 const app=express();
 
-const WebSocket = require('ws')
-const wss = new WebSocket.Server({ port: 3030 },()=>{
-    console.log('server 4 started on 80')
-})
+const port=process.env.PORT || 3030;
+
+import { WebSocketServer } from 'ws';
+
+const wss = new WebSocketServer({ port: port });
 
 wss.on('connection', function connection(ws) {
   ws.on('error', console.error);
