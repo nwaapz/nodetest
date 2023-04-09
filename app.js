@@ -3,12 +3,16 @@ const app=express();
 
 const port=process.env.PORT || 3000;
 
-app.listen(port,()=>{
-    
-})
+import { WebSocketServer } from 'ws';
 
-app.get('/',(req,res)=>{
+const wss = new WebSocketServer({ port: port });
 
-    res.send("welcome to the homepage baby");
+wss.on('connection', function connection(ws) {
+  ws.on('error', console.error);
 
-})
+  ws.on('message', function message(data) {
+    console.log('received: %s', data);
+  });
+
+  ws.send('something');
+});
