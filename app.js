@@ -1,7 +1,7 @@
 
 var mysql = require('mysql');
 
-var connection = mysql.createConnection({
+var dbconnection = mysql.createPool({
   host     : process.env.RDS_HOSTNAME,
   user     : process.env.RDS_USERNAME,
   password : process.env.RDS_PASSWORD,
@@ -9,7 +9,7 @@ var connection = mysql.createConnection({
 });
 
 
-connection.connect(function(err) {
+dbconnection.connect(function(err) {
   if (err) {
     console.error('Database connection failed: ' + err.stack);
     return;
