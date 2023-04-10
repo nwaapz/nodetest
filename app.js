@@ -8,6 +8,7 @@ var connection = mysql.createConnection({
   port     : process.env.RDS_PORT
 });
 
+
 connection.connect(function(err) {
   if (err) {
     console.error('Database connection failed: ' + err.stack);
@@ -15,18 +16,6 @@ connection.connect(function(err) {
   }
 
   console.log('Connected to database.');
-});
-
-
-
-
-
-
-dbconnection.getConnection((err,connection)=> {
-   if(err)
-      throw err;
-   console.log('Database connected successfully');
-   connection.release();
 });
 
 
