@@ -1,4 +1,4 @@
-
+console.log("helooo1234");
 var mysql = require('mysql');
 
 var dbconnection = mysql.createPool({
@@ -12,13 +12,11 @@ var dbconnection = mysql.createPool({
 });
 
 
-dbconnection.connect(function(err) {
-  if (err) {
-    console.error('Database connection failed: ' + err.stack);
-    return;
-  }
-
-  console.log('Connected to database.');
+dbconnection.getConnection((err,connection)=> {
+  if(err)
+     throw err;
+  console.log('Database connected successfully');
+  connection.release();
 });
 
 
